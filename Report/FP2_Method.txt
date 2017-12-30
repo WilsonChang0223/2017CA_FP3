@@ -1,0 +1,4 @@
+CPU time for executing a typical convolutional layer = 1990.88ms
+GPU time for executing a typical convolutional layer = 262.043ms
+Congratulations! You pass the check.
+Speedup: 7.59752
