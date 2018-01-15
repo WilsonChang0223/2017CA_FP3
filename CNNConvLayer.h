@@ -297,7 +297,7 @@ void ending()
 
 bool checker(){
 	int outVol = FILTNUM * FMSIZE/2 * FMSIZE/2;
-
+	outVol = 100;
 	for(int i = 0; i < outVol; i++){ 
 		if(  outCPU[i] != outGPU[i]   ){
 			cout << "The element: " << i << " is wrong!\n";

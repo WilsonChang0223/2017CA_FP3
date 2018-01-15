@@ -1,4 +1,4 @@
-CXX = nvcc
+CXX = nvcc -arch=sm_35 -rdc=true 
 TARGET = CNNConvLayer
 
 all: CNNConvLayer.cu

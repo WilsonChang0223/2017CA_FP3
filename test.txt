@@ -1,0 +1,490 @@
+CPU time for executing a typical convolutional layer = 1987.71ms
+index = 96, num = 15972 
+index = 97, num = -1489 
+index = 98, num = -9942 
+index = 99, num = -8586 
+index = 100, num = 7753 
+index = 101, num = 7937 
+index = 102, num = 2304 
+index = 103, num = 13612 
+index = 104, num = -2586 
+index = 105, num = 10684 
+index = 106, num = 7945 
+index = 107, num = 5496 
+index = 108, num = 2647 
+index = 109, num = -24957 
+index = 110, num = 3718 
+index = 111, num = -1534 
+index = 112, num = -1298 
+index = 113, num = 261 
+index = 114, num = 4752 
+index = 115, num = 13058 
+index = 116, num = 9970 
+index = 117, num = 4018 
+index = 118, num = 2833 
+index = 119, num = -7598 
+index = 120, num = 5642 
+index = 121, num = 4854 
+index = 122, num = 830 
+index = 123, num = -2850 
+index = 124, num = 11713 
+index = 125, num = 3235 
+index = 126, num = 6344 
+index = 127, num = 10497 
+index = 64, num = 6750 
+index = 65, num = 12998 
+index = 66, num = 30270 
+index = 67, num = 19272 
+index = 68, num = -20568 
+index = 69, num = 3601 
+index = 70, num = -2536 
+index = 71, num = -1754 
+index = 72, num = -6828 
+index = 73, num = 3926 
+index = 74, num = -8262 
+index = 75, num = 213 
+index = 76, num = -538 
+index = 77, num = -1533 
+index = 78, num = -20450 
+index = 79, num = -7393 
+index = 80, num = 7843 
+index = 81, num = -9919 
+index = 82, num = -1320 
+index = 83, num = 3309 
+index = 84, num = -4756 
+index = 85, num = 5124 
+index = 86, num = 1766 
+index = 87, num = -2229 
+index = 88, num = 20688 
+index = 89, num = 19204 
+index = 90, num = -6523 
+index = 91, num = 7879 
+index = 92, num = 4904 
+index = 93, num = -19055 
+index = 94, num = -8449 
+index = 95, num = -5751 
+index = 0, num = -2345 
+index = 1, num = 9306 
+index = 2, num = -4781 
+index = 3, num = 1310 
+index = 4, num = 5918 
+index = 5, num = -1730 
+index = 6, num = 6850 
+index = 7, num = 9062 
+index = 8, num = -7838 
+index = 9, num = -6849 
+index = 10, num = -1164 
+index = 11, num = 2516 
+index = 12, num = -6874 
+index = 13, num = -3879 
+index = 14, num = 3783 
+index = 15, num = 14552 
+index = 16, num = 21328 
+index = 17, num = -14079 
+index = 18, num = -9240 
+index = 19, num = -13596 
+index = 20, num = 3627 
+index = 21, num = -10221 
+index = 22, num = -1743 
+index = 23, num = 3708 
+index = 24, num = -1173 
+index = 25, num = -403 
+index = 26, num = 16037 
+index = 27, num = 9097 
+index = 28, num = 4869 
+index = 29, num = 405 
+index = 30, num = 34087 
+index = 31, num = -9819 
+index = 128, num = 4490 
+index = 129, num = -1545 
+index = 130, num = 5292 
+index = 131, num = 1939 
+index = 132, num = 8230 
+index = 133, num = 14293 
+index = 134, num = 8354 
+index = 135, num = 5097 
+index = 136, num = -8105 
+index = 137, num = 3754 
+index = 138, num = 2317 
+index = 139, num = 436 
+index = 140, num = -1340 
+index = 141, num = -11065 
+index = 142, num = 2474 
+index = 143, num = 11787 
+index = 144, num = 4236 
+index = 145, num = -9359 
+index = 146, num = -11114 
+index = 147, num = -3226 
+index = 148, num = -817 
+index = 149, num = 12789 
+index = 150, num = 51 
+index = 151, num = -6802 
+index = 152, num = 12556 
+index = 153, num = 3317 
+index = 154, num = -2209 
+index = 155, num = 5880 
+index = 156, num = 16306 
+index = 157, num = 1898 
+index = 158, num = 11244 
+index = 159, num = -10706 
+index = 32, num = 1496 
+index = 33, num = 12135 
+index = 34, num = 7187 
+index = 35, num = -3730 
+index = 36, num = 3980 
+index = 37, num = 11589 
+index = 38, num = 15960 
+index = 39, num = 7631 
+index = 40, num = -1632 
+index = 41, num = 2281 
+index = 42, num = 17630 
+index = 43, num = 15359 
+index = 44, num = -6279 
+index = 45, num = 1205 
+index = 46, num = -6158 
+index = 47, num = -24306 
+index = 48, num = -870 
+index = 49, num = -738 
+index = 50, num = 552 
+index = 51, num = 7295 
+index = 52, num = 7837 
+index = 53, num = 18186 
+index = 54, num = -9895 
+index = 55, num = -2654 
+index = 56, num = 5155 
+index = 57, num = 18358 
+index = 58, num = 2055 
+index = 59, num = 4159 
+index = 60, num = 11671 
+index = 61, num = 14451 
+index = 62, num = -2589 
+index = 63, num = 390 
+index = 160, num = -1424 
+index = 161, num = -1158 
+index = 162, num = -10732 
+index = 163, num = -3103 
+index = 164, num = 26551 
+index = 165, num = 39737 
+index = 166, num = -736 
+index = 167, num = -1535 
+index = 168, num = 4169 
+index = 169, num = 7364 
+index = 170, num = 11783 
+index = 171, num = 6410 
+index = 172, num = -19304 
+index = 173, num = 24582 
+index = 174, num = 32156 
+index = 175, num = 5145 
+index = 176, num = 14686 
+index = 177, num = 5114 
+index = 178, num = 20348 
+index = 179, num = 6646 
+index = 180, num = -10086 
+index = 181, num = 4408 
+index = 182, num = 3896 
+index = 183, num = 7333 
+index = 184, num = 487 
+index = 185, num = -1971 
+index = 186, num = 11808 
+index = 187, num = 7966 
+index = 188, num = 31083 
+index = 189, num = 6117 
+index = 190, num = 28804 
+index = 191, num = 19032 
+GPU time for executing a typical convolutional layer = 302.992ms
+The element: 0 is wrong!
+outCPU[0] = 9306
+outGPU[0] = 0
+The element: 1 is wrong!
+outCPU[1] = 34087
+outGPU[1] = 0
+The element: 2 is wrong!
+outCPU[2] = 12135
+outGPU[2] = 0
+The element: 3 is wrong!
+outCPU[3] = 9062
+outGPU[3] = 0
+The element: 4 is wrong!
+outCPU[4] = 11589
+outGPU[4] = 0
+The element: 5 is wrong!
+outCPU[5] = 15960
+outGPU[5] = 0
+The element: 6 is wrong!
+outCPU[6] = 2281
+outGPU[6] = 0
+The element: 7 is wrong!
+outCPU[7] = 17630
+outGPU[7] = 0
+The element: 8 is wrong!
+outCPU[8] = 21328
+outGPU[8] = 0
+The element: 10 is wrong!
+outCPU[10] = 3627
+outGPU[10] = 0
+The element: 11 is wrong!
+outCPU[11] = 7295
+outGPU[11] = 0
+The element: 12 is wrong!
+outCPU[12] = 18186
+outGPU[12] = 0
+The element: 13 is wrong!
+outCPU[13] = 16037
+outGPU[13] = 0
+The element: 14 is wrong!
+outCPU[14] = 18358
+outGPU[14] = 0
+The element: 15 is wrong!
+outCPU[15] = 4159
+outGPU[15] = 0
+The element: 16 is wrong!
+outCPU[16] = 20688
+outGPU[16] = 0
+The element: 17 is wrong!
+outCPU[17] = 7879
+outGPU[17] = 0
+The element: 18 is wrong!
+outCPU[18] = 12998
+outGPU[18] = 0
+The element: 19 is wrong!
+outCPU[19] = 30270
+outGPU[19] = 0
+The element: 20 is wrong!
+outCPU[20] = 15972
+outGPU[20] = 0
+The element: 22 is wrong!
+outCPU[22] = 7937
+outGPU[22] = 0
+The element: 23 is wrong!
+outCPU[23] = 13612
+outGPU[23] = 0
+The element: 24 is wrong!
+outCPU[24] = 10684
+outGPU[24] = 0
+The element: 25 is wrong!
+outCPU[25] = 7945
+outGPU[25] = 0
+The element: 26 is wrong!
+outCPU[26] = 7843
+outGPU[26] = 0
+The element: 27 is wrong!
+outCPU[27] = 3718
+outGPU[27] = 0
+The element: 28 is wrong!
+outCPU[28] = 261
+outGPU[28] = 0
+The element: 29 is wrong!
+outCPU[29] = 13058
+outGPU[29] = 0
+The element: 30 is wrong!
+outCPU[30] = 9970
+outGPU[30] = 0
+The element: 31 is wrong!
+outCPU[31] = 2833
+outGPU[31] = 0
+The element: 32 is wrong!
+outCPU[32] = 12789
+outGPU[32] = 0
+The element: 33 is wrong!
+outCPU[33] = 830
+outGPU[33] = 0
+The element: 34 is wrong!
+outCPU[34] = 12556
+outGPU[34] = 0
+The element: 35 is wrong!
+outCPU[35] = 10497
+outGPU[35] = 0
+The element: 36 is wrong!
+outCPU[36] = 16306
+outGPU[36] = 0
+The element: 37 is wrong!
+outCPU[37] = 11244
+outGPU[37] = 0
+The element: 38 is wrong!
+outCPU[38] = 14293
+outGPU[38] = 0
+The element: 39 is wrong!
+outCPU[39] = 8354
+outGPU[39] = 0
+The element: 40 is wrong!
+outCPU[40] = 39737
+outGPU[40] = 0
+The element: 41 is wrong!
+outCPU[41] = 2317
+outGPU[41] = 0
+The element: 42 is wrong!
+outCPU[42] = 9132
+outGPU[42] = 0
+The element: 43 is wrong!
+outCPU[43] = 26413
+outGPU[43] = 0
+The element: 44 is wrong!
+outCPU[44] = 24582
+outGPU[44] = 0
+The element: 45 is wrong!
+outCPU[45] = 32156
+outGPU[45] = 0
+The element: 46 is wrong!
+outCPU[46] = 17609
+outGPU[46] = 0
+The element: 47 is wrong!
+outCPU[47] = 25769
+outGPU[47] = 0
+The element: 48 is wrong!
+outCPU[48] = 12562
+outGPU[48] = 0
+The element: 49 is wrong!
+outCPU[49] = 7333
+outGPU[49] = 0
+The element: 50 is wrong!
+outCPU[50] = 5005
+outGPU[50] = 0
+The element: 51 is wrong!
+outCPU[51] = 17526
+outGPU[51] = 0
+The element: 52 is wrong!
+outCPU[52] = 31083
+outGPU[52] = 0
+The element: 53 is wrong!
+outCPU[53] = 34508
+outGPU[53] = 0
+The element: 54 is wrong!
+outCPU[54] = 22834
+outGPU[54] = 0
+The element: 55 is wrong!
+outCPU[55] = 22885
+outGPU[55] = 0
+The element: 56 is wrong!
+outCPU[56] = 28628
+outGPU[56] = 0
+The element: 57 is wrong!
+outCPU[57] = 13558
+outGPU[57] = 0
+The element: 58 is wrong!
+outCPU[58] = 18807
+outGPU[58] = 0
+The element: 59 is wrong!
+outCPU[59] = 6476
+outGPU[59] = 0
+The element: 60 is wrong!
+outCPU[60] = 10176
+outGPU[60] = 0
+The element: 61 is wrong!
+outCPU[61] = 15215
+outGPU[61] = 0
+The element: 62 is wrong!
+outCPU[62] = 6364
+outGPU[62] = 0
+The element: 63 is wrong!
+outCPU[63] = 21677
+outGPU[63] = 0
+The element: 64 is wrong!
+outCPU[64] = 20467
+outGPU[64] = 0
+The element: 65 is wrong!
+outCPU[65] = 18993
+outGPU[65] = 0
+The element: 66 is wrong!
+outCPU[66] = 21179
+outGPU[66] = 0
+The element: 67 is wrong!
+outCPU[67] = 5634
+outGPU[67] = 0
+The element: 68 is wrong!
+outCPU[68] = 23566
+outGPU[68] = 0
+The element: 69 is wrong!
+outCPU[69] = 6556
+outGPU[69] = 0
+The element: 70 is wrong!
+outCPU[70] = 11568
+outGPU[70] = 0
+The element: 71 is wrong!
+outCPU[71] = 15121
+outGPU[71] = 0
+The element: 72 is wrong!
+outCPU[72] = 22767
+outGPU[72] = 0
+The element: 73 is wrong!
+outCPU[73] = 23560
+outGPU[73] = 0
+The element: 74 is wrong!
+outCPU[74] = 17576
+outGPU[74] = 0
+The element: 75 is wrong!
+outCPU[75] = 18640
+outGPU[75] = 0
+The element: 76 is wrong!
+outCPU[76] = 9254
+outGPU[76] = 0
+The element: 77 is wrong!
+outCPU[77] = 15018
+outGPU[77] = 0
+The element: 78 is wrong!
+outCPU[78] = 7833
+outGPU[78] = 0
+The element: 79 is wrong!
+outCPU[79] = 15748
+outGPU[79] = 0
+The element: 80 is wrong!
+outCPU[80] = 11138
+outGPU[80] = 0
+The element: 81 is wrong!
+outCPU[81] = 23925
+outGPU[81] = 0
+The element: 82 is wrong!
+outCPU[82] = 11535
+outGPU[82] = 0
+The element: 83 is wrong!
+outCPU[83] = 31527
+outGPU[83] = 0
+The element: 84 is wrong!
+outCPU[84] = 22037
+outGPU[84] = 0
+The element: 85 is wrong!
+outCPU[85] = 48364
+outGPU[85] = 0
+The element: 86 is wrong!
+outCPU[86] = 28509
+outGPU[86] = 0
+The element: 87 is wrong!
+outCPU[87] = 29261
+outGPU[87] = 0
+The element: 88 is wrong!
+outCPU[88] = 27454
+outGPU[88] = 0
+The element: 89 is wrong!
+outCPU[89] = 23005
+outGPU[89] = 0
+The element: 90 is wrong!
+outCPU[90] = 28365
+outGPU[90] = 0
+The element: 91 is wrong!
+outCPU[91] = 28416
+outGPU[91] = 0
+The element: 92 is wrong!
+outCPU[92] = 27720
+outGPU[92] = 0
+The element: 93 is wrong!
+outCPU[93] = 42669
+outGPU[93] = 0
+The element: 94 is wrong!
+outCPU[94] = 33626
+outGPU[94] = 0
+The element: 95 is wrong!
+outCPU[95] = 29312
+outGPU[95] = 0
+The element: 96 is wrong!
+outCPU[96] = 58900
+outGPU[96] = 0
+The element: 97 is wrong!
+outCPU[97] = 18754
+outGPU[97] = 0
+The element: 98 is wrong!
+outCPU[98] = 15555
+outGPU[98] = 0
+The element: 99 is wrong!
+outCPU[99] = 25687
+outGPU[99] = 0
+Congratulations! You pass the check.
+Speedup: 6.56028
