@@ -25,6 +25,7 @@ int *filtCooNNZ;
 int *filtCooData;
 int *filtCooRow;
 int *filtCooCol;
+int *filtCooPeak;
 int *tmp_filtCooData;
 int *tmp_filtCooRow;
 int *tmp_filtCooCol;
@@ -36,6 +37,7 @@ int *inNeuCooCol;
 int *tmp_inNeuCooData;
 int *tmp_inNeuCooRow;
 int *tmp_inNeuCooCol;
+
 
 
 void init()
@@ -110,9 +112,10 @@ void initCoo()
 	}
 	current_nnz=0;
 	
-	
+	filtCooPeak = new int [FILTNUM];
 	for(i = 0; i < FILTNUM; i++){
 		ifs >> str; 
+		int maxTmp = 0;
 		for(j = 0; j < FMDEPTH; j++){
 			ifs >> str; 
 			ifs >> str >> nnz; 
@@ -183,8 +186,11 @@ void initCoo()
 			// }
 			
 			current_nnz=current_nnz+nnz;
+			if (nnz > maxTmp)
+				maxTmp = nnz;
 		
 		}
+		filtCooPeak[i] = maxTmp;
 	}
 	filtCooSize = current_nnz;
 	ifs.close();	
@@ -297,13 +303,12 @@ void ending()
 
 bool checker(){
 	int outVol = FILTNUM * FMSIZE/2 * FMSIZE/2;
-	outVol = 100;
 	for(int i = 0; i < outVol; i++){ 
 		if(  outCPU[i] != outGPU[i]   ){
 			cout << "The element: " << i << " is wrong!\n";
 			cout << "outCPU[" << i << "] = " << outCPU[i] << endl;
 			cout << "outGPU[" << i << "] = " << outGPU[i] << endl;
-//			return false;
+			return false;
 		}
 	}
 	return true;

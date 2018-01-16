@@ -1,0 +1,10 @@
+CPU time for executing a typical convolutional layer = 1977.16ms
+
+cudaMalloc : no error
+cudaMemcpy a => g : no error
+cudaMemcpy g => b : no error
+Connect
+
+GPU time for executing a typical convolutional layer = 8.966ms
+Congratulations! You pass the check.
+Speedup: 220.517

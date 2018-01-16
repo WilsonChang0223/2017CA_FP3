@@ -7,6 +7,7 @@ int *filtCooNNZ_GPU;
 int *filtCooData_GPU;
 int *filtCooRow_GPU;
 int *filtCooCol_GPU;
+int *filtCooPeak_GPU;
 
 int *inNeuCooNNZ_GPU;
 int *inNeuCooData_GPU;
@@ -81,6 +82,7 @@ void init_Mem_GPU(){
 	cudaMalloc(&filtCooData_GPU, filtCooSize    * sizeof(int)); 
 	cudaMalloc(&filtCooRow_GPU , filtCooSize    * sizeof(int));
 	cudaMalloc(&filtCooCol_GPU , filtCooSize    * sizeof(int));
+	cudaMalloc(&filtCooPeak_GPU , filtCooSize    * sizeof(int));
 
 	cudaMalloc(&inNeuCooNNZ_GPU , FMDEPTH     * sizeof(int));
 	cudaMalloc(&inNeuCooData_GPU, inNeuCooSize* sizeof(int));
@@ -93,6 +95,7 @@ void init_Mem_GPU(){
 	cudaMemcpy(filtCooData_GPU, filtCooData, filtCooSize     *sizeof(int), cudaMemcpyHostToDevice);
 	cudaMemcpy(filtCooRow_GPU , filtCooRow , filtCooSize     *sizeof(int), cudaMemcpyHostToDevice);
 	cudaMemcpy(filtCooCol_GPU , filtCooCol , filtCooSize     *sizeof(int), cudaMemcpyHostToDevice);
+	cudaMemcpy(filtCooPeak_GPU , filtCooPeak , filtCooSize     *sizeof(int), cudaMemcpyHostToDevice);
 
 	cudaMemcpy(inNeuCooNNZ_GPU , inNeuCooNNZ , FMDEPTH      *sizeof(int), cudaMemcpyHostToDevice);
 	cudaMemcpy(inNeuCooData_GPU, inNeuCooData, inNeuCooSize *sizeof(int), cudaMemcpyHostToDevice);
@@ -100,65 +103,20 @@ void init_Mem_GPU(){
 	cudaMemcpy(inNeuCooCol_GPU , inNeuCooCol , inNeuCooSize *sizeof(int), cudaMemcpyHostToDevice);
 }
 /***	Implement your CUDA Kernel here	***/
-__device__ int tmp_out_dev[FMSIZE*FMSIZE*FILTNUM], dynamicNum[FILTNUM];
+__device__ int tmp_out_dev[FMSIZE*FMSIZE*FILTNUM];
 
-__global__ void intiDynamicParallel(int *filtCooNNZ_dev,int *inNeuCooNNZ_dev){
-	__shared__ int tmp[FMDEPTH];
-	
-	int FmDepthIdx = threadIdx.x;
-	int blockNum   = blockIdx.x* blockDim.x + threadIdx.x;
-
-	int FmSizeAccu, FiltSizeAccu;
-	int FmSizeAccu_p, FiltSizeAccu_p;
-	int FmSize, FiltSize;
-	//Start initial Fm Fi Size//
-	FmSizeAccu   = inNeuCooNNZ_dev[FmDepthIdx];	
-	if (FmDepthIdx == 0)
-		FmSizeAccu_p = 0;
-	else
-		FmSizeAccu_p = inNeuCooNNZ_dev[FmDepthIdx-1];
-        FmSize = FmSizeAccu - FmSizeAccu_p;
-
-	FiltSizeAccu = filtCooNNZ_dev[blockNum];
-	if (blockNum == 0)
-		FiltSizeAccu_p = 0;
-	else
-		FiltSizeAccu_p = filtCooNNZ_dev[blockNum-1];	
-        FiltSize = FiltSizeAccu - FiltSizeAccu_p;	
-
-	tmp[threadIdx.x] = FmSize* FiltSize;
-
-	int div = FMDEPTH/2;
-	while(1){
-		if (threadIdx.x < div)	
-			tmp[threadIdx.x] = tmp[threadIdx.x] + tmp[threadIdx.x + div];
-		if (div%2 != 0)
-			break;
-		div = div / 2;
-		__syncthreads();
-	}
-	__syncthreads();
-	int sum = 0;
-	for (int i = 0; i < div; i++){
-		if (threadIdx.x == 0)
-			sum += tmp[i];
-	}
-	if (threadIdx.x == 0)
-		dynamicNum[blockIdx.x] = sum;
-	
-}
-
-__global__ 
-void convLayerGPU(const int ID, int *filtCooNNZ_dev,int *filtCooData_dev,int *filtCooRow_dev,int *filtCooCol_dev,int *inNeuCooNNZ_dev,int *inNeuCooData_dev,int *inNeuCooRow_dev,int *inNeuCooCol_dev){
+__global__
+void MainConGPU(int *filtCooNNZ_dev,int *filtCooData_dev,int *filtCooRow_dev,int *filtCooCol_dev,int *filtCooPeak_dev,int *inNeuCooNNZ_dev,int *inNeuCooData_dev,int *inNeuCooRow_dev,int *inNeuCooCol_dev){	
 	// declarations for bunch of indexing parameters
+	__shared__ int sharetmp[FMSIZE*FMSIZE];	
 	int fmArea = FMSIZE* FMSIZE;
 
-	int threadperblock = blockDim.x/FMDEPTH;
-	int i = ID* blockDim.x + threadIdx.x;
-
 	for (int Idx = threadIdx.x; Idx < fmArea; Idx += blockDim.x)
-		tmp_out_dev[Idx+ID*fmArea] = 0;
+		sharetmp[Idx] = 0;
 	__syncthreads();
+
+	int threadperblock = blockDim.x/FMDEPTH;
+	int i = blockIdx.x* blockDim.x + threadIdx.x;
 
 	int FmSizeAccu, FiltSizeAccu;
 	int FmSizeAccu_p, FiltSizeAccu_p;
@@ -204,23 +162,14 @@ void convLayerGPU(const int ID, int *filtCooNNZ_dev,int *filtCooData_dev,int *fi
         		continue;
 	
 		int tmp = filtCooData_dev[FiltIdx] *inNeuCooData_dev[NeuIdx];	
-		int index = OutDepth* fmArea + OutRow* FMSIZE + OutCol;
-		atomicAdd(&tmp_out_dev[index], tmp);	
+		int index = OutRow* FMSIZE + OutCol;
+		atomicAdd(&sharetmp[index], tmp);	
       	}
 	__syncthreads();
-}
 
-__global__
-void MainDynamicConGPU(int *filtCooNNZ_dev,int *filtCooData_dev,int *filtCooRow_dev,int *filtCooCol_dev,int *inNeuCooNNZ_dev,int *inNeuCooData_dev,int *inNeuCooRow_dev,int *inNeuCooCol_dev){	
-	int ID = blockIdx.x;
-	if (dynamicNum[blockIdx.x] > 65000)
-		convLayerGPU<<<1, FMDEPTH* 4>>>(ID, filtCooNNZ_dev,filtCooData_dev,filtCooRow_dev,filtCooCol_dev,inNeuCooNNZ_dev,inNeuCooData_dev,inNeuCooRow_dev,inNeuCooCol_dev); 
-	else if (dynamicNum[blockIdx.x] <= 65000 && dynamicNum[blockIdx.x] > 45000)
-		convLayerGPU<<<1, FMDEPTH* 2>>>(ID, filtCooNNZ_dev,filtCooData_dev,filtCooRow_dev,filtCooCol_dev,inNeuCooNNZ_dev,inNeuCooData_dev,inNeuCooRow_dev,inNeuCooCol_dev); 
-	else
-		convLayerGPU<<<1, FMDEPTH* 1>>>(ID, filtCooNNZ_dev,filtCooData_dev,filtCooRow_dev,filtCooCol_dev,inNeuCooNNZ_dev,inNeuCooData_dev,inNeuCooRow_dev,inNeuCooCol_dev); 
-
-	cudaDeviceSynchronize(); 
+	for (int Idx = threadIdx.x; Idx < fmArea; Idx += blockDim.x)
+		tmp_out_dev[Idx+blockIdx.x*fmArea] = sharetmp[Idx];
+	__syncthreads();
 }
 
 __global__ 
@@ -250,8 +199,7 @@ void MaxPoolGPU(int *out_dev){
 				max = 0;
 			out_dev[outIdx] = max;
 		}
-	}
-	
+	}	
 }
 
 int main()
@@ -268,16 +216,38 @@ int main()
 	clock_gettime(CLOCK_REALTIME, &time_end);
 	convLayerCPUExecTime = timespec_diff_us(time_begin, time_end);
 	cout << "CPU time for executing a typical convolutional layer = "  <<  ((float)convLayerCPUExecTime)/1000 << "ms" << endl;
+
+
+	//Check GPU connection
+	cout<< endl;
 	
+	const int num=100;
+	int* g;
+    
+  	int a[num], b[num];
+    	for(int k=0; k<num; k++){
+       		a[k]=k;
+                b[k]=0;
+    	}
+	
+    	cout<< "cudaMalloc : "<< cudaGetErrorString(cudaMalloc((void**) &g, sizeof(int)*num))<< endl;
+    	cout<< "cudaMemcpy a => g : "<< cudaGetErrorString(cudaMemcpy(g, a, sizeof(int)*num, cudaMemcpyHostToDevice))<< endl;
+    	cout<< "cudaMemcpy g => b : "<< cudaGetErrorString(cudaMemcpy(b, g, sizeof(int)*num, cudaMemcpyDeviceToHost)) << endl;
+    
+    	for(int k=0; k<num; k++){
+        	if(a[k]!=b[k]){
+                cout << "Fail to ";
+                    	break;
+            	}
+    	}
+    	cout<< "Connect"<< endl<< endl;	
+
 	//Convolution by GPU   
 	clock_gettime(CLOCK_REALTIME, &time_begin);
 	init_Mem_GPU();
 	/***	Lunch your CUDA Kernel here	***/
-	//Inititate Dynamic Parallel//
-	intiDynamicParallel<<<FILTNUM, FMDEPTH>>>(filtCooNNZ_GPU,inNeuCooNNZ_GPU);
-	cudaDeviceSynchronize();
 	//Convolution//
-	MainDynamicConGPU<<<FILTNUM, 1>>>(filtCooNNZ_GPU,filtCooData_GPU,filtCooRow_GPU,filtCooCol_GPU,inNeuCooNNZ_GPU,inNeuCooData_GPU,inNeuCooRow_GPU,inNeuCooCol_GPU); // Lunch the kernel
+	MainConGPU<<<FILTNUM, 4*FMDEPTH>>>(filtCooNNZ_GPU,filtCooData_GPU,filtCooRow_GPU,filtCooCol_GPU,filtCooPeak_GPU,inNeuCooNNZ_GPU,inNeuCooData_GPU,inNeuCooRow_GPU,inNeuCooCol_GPU); // Lunch the kernel
 	cudaDeviceSynchronize(); // Do synchronization before clock_gettime()
 	//MaxPooling//
 	MaxPoolGPU<<<FILTNUM, FMSIZE*FMSIZE>>>(out_GPU);
